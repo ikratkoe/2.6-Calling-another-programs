@@ -4,10 +4,11 @@ import subprocess
 
 files = os.listdir("Source")
 
-os.mkdir("Result")
+try:
+    os.mkdir("Result")
+except FileExistsError: pass
 
 for f in files:
-    cmdstr ="convert " + " source\\" + f + " -resize 200 " + "result\\" + f
+    cmdstr = "convert " + os.path.join(" source", f) + " -resize 200 " + os.path.join("result", f)
     subprocess.run(cmdstr)
-
 
